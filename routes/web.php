@@ -947,3 +947,29 @@ Route::get('/has-any/2', function (): bool {
 
     // false
 });
+
+Route::get('/implode/1', function (): string {
+    return collect([
+        ['account_id' => 1, 'product' => 'Desk'],
+        ['account_id' => 2, 'product' => 'Ball'],
+    ])
+    ->implode('product', ', ');
+
+    // Desk, Ball
+});
+
+Route::get('/implode/2', function (): string {
+    return collect([1, 2, 3, 4, 5])->implode('-');
+
+    // 1-2-3-4-5
+});
+
+Route::get('/implode/3', function (): string {
+    return collect([
+        ['account_id' => 1, 'product' => 'Desk'],
+        ['account_id' => 2, 'product' => 'Ball'],
+    ])
+    ->implode(fn (array $item, int $key) => strtoupper($item['product']), ', ');
+
+    // DESK, BALL
+});
