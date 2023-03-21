@@ -913,4 +913,23 @@ Route::get('group-by/2', function (): array {
     */
 });
 
-// # has
+Route::get('/has/1', function (): bool {
+    return collect(['account_id' => 1, 'product' => 'Desk', 'amount' => 5])
+        ->has('product');
+
+    // true
+});
+
+Route::get('/has/2', function (): bool {
+    return collect(['account_id' => 1, 'product' => 'Desk', 'amount' => 5])
+        ->has('product', 'amount');
+
+    // true
+});
+
+Route::get('/has/3', function (): bool {
+    return collect(['account_id' => 1, 'product' => 'Desk', 'amount' => 5])
+        ->has('amount', 'price');
+
+    // false
+});
