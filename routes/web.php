@@ -933,3 +933,17 @@ Route::get('/has/3', function (): bool {
 
     // false
 });
+
+Route::get('/has-any/1', function (): bool {
+    return collect(['account_id' => 1, 'product' => 'Desk', 'amount' => 5])
+        ->hasAny(['product', 'price']);
+
+    // true
+});
+
+Route::get('/has-any/2', function (): bool {
+    return collect(['account_id' => 1, 'product' => 'Desk', 'amount' => 5])
+        ->hasAny(['name', 'price']);
+
+    // false
+});
