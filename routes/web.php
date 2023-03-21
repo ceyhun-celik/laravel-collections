@@ -973,3 +973,19 @@ Route::get('/implode/3', function (): string {
 
     // DESK, BALL
 });
+
+/**
+ * @return array<int, string>
+ */
+Route::get('/intersect', function (): array {
+    return collect(['Desk', 'Sofa', 'Chair'])
+        ->intersect(['Desk', 'Chair', 'Bookcase'])
+        ->all();
+
+    /*
+        {
+            "0": "Desk",
+            "2": "Chair"
+        }
+    */
+});
