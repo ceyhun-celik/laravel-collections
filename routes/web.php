@@ -989,3 +989,26 @@ Route::get('/intersect', function (): array {
         }
     */
 });
+
+/**
+ * @return array<string, string>
+ */
+Route::get('intersect-assoc', function (): array {
+    return collect([
+        'color' => 'red',
+        'size' => 'M',
+        'material' => 'cotton',
+    ])
+    ->intersectAssoc([
+        'color' => 'blue',
+        'size' => 'M',
+        'material' => 'polyester'
+    ])
+    ->all();
+
+    /*
+        {
+            "size": "M"
+        }
+    */
+});
