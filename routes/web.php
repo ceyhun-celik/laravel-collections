@@ -1012,3 +1012,27 @@ Route::get('intersect-assoc', function (): array {
         }
     */
 });
+
+/**
+ * @return array<string, mixed>
+ */
+Route::get('intersect-by-keys', function (): array {
+    return collect([
+        'serial' => 'UX301',
+        'type' => 'screen',
+        'year' => 2009,
+    ])
+    ->intersectByKeys([
+        'reference' => 'UX404',
+        'type' => 'tab',
+        'year' => 2011,
+    ])
+    ->all();
+
+    /*
+        {
+            "type": "screen",
+            "year": 2009
+        }
+    */
+});
