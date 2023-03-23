@@ -1192,3 +1192,19 @@ Route::get('/map', function (): array {
     */
 });
 
+/**
+ * @return array<int, int>
+ */
+Route::get('/map-spread', function (): array {
+    return collect([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])->chunk(2)->mapSpread(fn (int $even, int $odd) => $even + $odd)->all();
+
+    /*
+        [
+            1,
+            5,
+            9,
+            13,
+            17
+        ]
+    */
+});
