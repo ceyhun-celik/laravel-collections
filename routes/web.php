@@ -1045,3 +1045,10 @@ Route::get('intersect-by-keys', function (): array {
         }
     */
 });
+
+Route::get('/is-empty', function (): bool {
+    return collect([])->isEmpty();
+
+    // true
+});
+
