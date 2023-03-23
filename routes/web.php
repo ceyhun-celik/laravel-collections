@@ -1052,3 +1052,9 @@ Route::get('/is-empty', function (): bool {
     // true
 });
 
+Route::get('/is-not-empty', function (): bool {
+    return collect([])->isNotEmpty();
+
+    // false
+});
+
