@@ -1168,3 +1168,9 @@ Route::get('/last/2', function (): int {
 
     // 4
 });
+
+Route::get('/lazy', function (): string {
+    return get_class(collect([1, 2, 3, 4])->lazy());
+
+    // Illuminate\Support\LazyCollection
+});
