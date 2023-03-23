@@ -1208,3 +1208,39 @@ Route::get('/map-spread', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<string, array>
+ */
+Route::get('/map-to-groups', function (): array {
+    return collect([
+        [
+            'name' => 'John Doe',
+            'department' => 'Sales',
+        ],
+        [
+            'name' => 'Jane Doe',
+            'department' => 'Sales',
+        ],
+        [
+            'name' => 'Johnny Doe',
+            'department' => 'Marketing',
+        ],
+    ])
+    ->mapToGroups(fn (array $item, int $key): array => [
+        $item['department'] => $item['name'],
+    ])
+    ->all();
+
+    /*
+        {
+            "Sales": [
+                "John Doe",
+                "Jane Doe"
+            ],
+            "Marketing": [
+                "Johnny Doe"
+            ]
+        }
+    */
+});
