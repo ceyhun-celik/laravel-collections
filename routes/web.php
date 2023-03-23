@@ -1058,3 +1058,32 @@ Route::get('/is-not-empty', function (): bool {
     // false
 });
 
+Route::get('/join/1', function (): string {
+    return collect(['a', 'b', 'c'])->join(', ');
+
+    // a, b, c
+});
+
+Route::get('/join/2', function (): string {
+    return collect(['a', 'b', 'c'])->join(', ', ', and ');
+
+    // a, b, and c
+});
+
+Route::get('/join/3', function (): string {
+    return collect(['a', 'b'])->join(', ', ' and ');
+
+    // a and b
+});
+
+Route::get('/join/4', function (): string {
+    return collect(['a'])->join(', ', ' and ');
+
+    // a
+});
+
+Route::get('/join/5', function (): string {
+    return collect([])->join(', ', ' and ');
+
+    //
+});
