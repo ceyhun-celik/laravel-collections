@@ -59,7 +59,7 @@ Route::prefix('average')->group(function (): void {
             ['foo' => 20],
             ['foo' => 40],
         ])
-        ->avg('foo');
+            ->avg('foo');
 
         // 20
     });
@@ -106,8 +106,8 @@ Route::get('/collapse', function (): array {
         [4, 5, 6],
         [7, 8, 9],
     ])
-    ->collapse()
-    ->all();
+        ->collapse()
+        ->all();
 
     /*
         [
@@ -187,7 +187,7 @@ Route::prefix('contains')->group(function (): void {
             ['product' => 'Desk', 'price' => 200],
             ['product' => 'Ball', 'price' => 100],
         ])
-        ->contains('product', 'Bookcase');
+            ->contains('product', 'Bookcase');
 
         // false
     });
@@ -197,7 +197,7 @@ Route::prefix('contains')->group(function (): void {
             ['product' => 'Desk', 'price' => 200],
             ['product' => 'Ball', 'price' => 100],
         ])
-        ->contains('product', 'Ball');
+            ->contains('product', 'Ball');
 
         // true
     });
@@ -271,7 +271,7 @@ Route::get('/cross-join/1', function (): array {
     return collect([1, 2])
         ->crossJoin(['a', 'b'])
         ->all();
-    
+
     /*
         [
             [
@@ -297,7 +297,7 @@ Route::get('/cross-join/2', function (): array {
     return collect([1, 2])
         ->crossJoin(['a', 'b'], ['I', 'II'])
         ->all();
-    
+
     /*
         [
             [
@@ -366,13 +366,13 @@ Route::get('/diff-assoc', function (): array {
         'type' => 'fruit',
         'remain' => 6,
     ])
-    ->diffAssoc([
-        'color' => 'yellow',
-        'type' => 'fruit',
-        'remain' => 3,
-        'used' => 6,
-    ])
-    ->all();
+        ->diffAssoc([
+            'color' => 'yellow',
+            'type' => 'fruit',
+            'remain' => 3,
+            'used' => 6,
+        ])
+        ->all();
 
     /*
         {
@@ -393,13 +393,13 @@ Route::get('/diff-keys', function (): array {
         'four' => 40,
         'five' => 50,
     ])
-    ->diffKeys([
-        'two' => 2,
-        'four' => 4,
-        'six' => 6,
-        'eight' => 8,
-    ])
-    ->all();
+        ->diffKeys([
+            'two' => 2,
+            'four' => 4,
+            'six' => 6,
+            'eight' => 8,
+        ])
+        ->all();
 
     /*
         {
@@ -429,7 +429,7 @@ Route::get('doesnt-contain/3', function (): bool {
         ['product' => 'Desk', 'price' => 200],
         ['product' => 'Ball', 'price' => 100],
     ])
-    ->doesntContain('product', 'Bookcase');
+        ->doesntContain('product', 'Bookcase');
 
     // true
 });
@@ -439,7 +439,7 @@ Route::get('doesnt-contain/4', function (): bool {
         ['product' => 'Desk', 'price' => 200],
         ['product' => 'Ball', 'price' => 100],
     ])
-    ->doesntContain('product', 'Ball');
+        ->doesntContain('product', 'Ball');
 
     // false
 });
@@ -496,8 +496,8 @@ Route::get('/duplicates/2', function (): array {
         ['email' => 'james@example.com', 'position' => 'Designer'],
         ['email' => 'victoria@example.com', 'position' => 'Developer'],
     ])
-    ->duplicates('position')
-    ->all();
+        ->duplicates('position')
+        ->all();
 
     /*
         {
@@ -626,7 +626,7 @@ Route::get('/first-where/1', function (): array {
         ['name' => 'Diego', 'age' => 23],
         ['name' => 'Linda', 'age' => 84],
     ])
-    ->firstWhere('name', 'Linda');
+        ->firstWhere('name', 'Linda');
 
     /*
         {
@@ -646,7 +646,7 @@ Route::get('/first-where/2', function (): array {
         ['name' => 'Diego', 'age' => 23],
         ['name' => 'Linda', 'age' => 84],
     ])
-    ->firstWhere('age', '>=', 18);
+        ->firstWhere('age', '>=', 18);
 
     /*
         {
@@ -666,7 +666,7 @@ Route::get('/first-where/3', function (): array {
         ['name' => 'Diego', 'age' => 23],
         ['name' => 'Linda', 'age' => 84],
     ])
-    ->firstWhere('age');
+        ->firstWhere('age');
 
     /*
         {
@@ -685,8 +685,8 @@ Route::get('/flat-map', function (): array {
         ['school' => 'Arkansas'],
         ['age' => 28],
     ])
-    ->flatMap(fn (array $values) => array_map('strtoupper', $values))
-    ->all();
+        ->flatMap(fn (array $values) => array_map('strtoupper', $values))
+        ->all();
 
     /*
         {
@@ -707,8 +707,8 @@ Route::get('/flatten/1', function (): array {
             'php', 'javascript',
         ],
     ])
-    ->flatten()
-    ->all();
+        ->flatten()
+        ->all();
 
     /*
         [
@@ -737,8 +737,8 @@ Route::get('/flatten/2', function (): array {
             ],
         ],
     ])
-    ->flatten()
-    ->all();
+        ->flatten()
+        ->all();
 
     /*
         [
@@ -768,8 +768,8 @@ Route::get('/flatten/3', function (): array {
             ],
         ],
     ])
-    ->flatten(1)
-    ->all();
+        ->flatten(1)
+        ->all();
 
     /*
         [
@@ -863,8 +863,8 @@ Route::get('group-by/1', function (): array {
         ['account_id' => 'account-x10', 'product' => 'Bookcase'],
         ['account_id' => 'account-x11', 'product' => 'Desk'],
     ])
-    ->groupBy('account_id')
-    ->all();
+        ->groupBy('account_id')
+        ->all();
 
     /*
         {
@@ -962,7 +962,7 @@ Route::get('/implode/1', function (): string {
         ['account_id' => 1, 'product' => 'Desk'],
         ['account_id' => 2, 'product' => 'Ball'],
     ])
-    ->implode('product', ', ');
+        ->implode('product', ', ');
 
     // Desk, Ball
 });
@@ -978,7 +978,7 @@ Route::get('/implode/3', function (): string {
         ['account_id' => 1, 'product' => 'Desk'],
         ['account_id' => 2, 'product' => 'Ball'],
     ])
-    ->implode(fn (array $item, int $key) => strtoupper($item['product']), ', ');
+        ->implode(fn (array $item, int $key) => strtoupper($item['product']), ', ');
 
     // DESK, BALL
 });
@@ -1008,12 +1008,12 @@ Route::get('intersect-assoc', function (): array {
         'size' => 'M',
         'material' => 'cotton',
     ])
-    ->intersectAssoc([
-        'color' => 'blue',
-        'size' => 'M',
-        'material' => 'polyester'
-    ])
-    ->all();
+        ->intersectAssoc([
+            'color' => 'blue',
+            'size' => 'M',
+            'material' => 'polyester'
+        ])
+        ->all();
 
     /*
         {
@@ -1031,12 +1031,12 @@ Route::get('intersect-by-keys', function (): array {
         'type' => 'screen',
         'year' => 2009,
     ])
-    ->intersectByKeys([
-        'reference' => 'UX404',
-        'type' => 'tab',
-        'year' => 2011,
-    ])
-    ->all();
+        ->intersectByKeys([
+            'reference' => 'UX404',
+            'type' => 'tab',
+            'year' => 2011,
+        ])
+        ->all();
 
     /*
         {
@@ -1096,8 +1096,8 @@ Route::get('key-by/1', function (): array {
         ['product_id' => 'prod-100', 'name' => 'Desk'],
         ['product_id' => 'prod-200', 'name' => 'Ball'],
     ])
-    ->keyBy('product_id')
-    ->all();
+        ->keyBy('product_id')
+        ->all();
 
     /*
         {
@@ -1121,8 +1121,8 @@ Route::get('key-by/2', function (): array {
         ['product_id' => 'prod-100', 'name' => 'Desk'],
         ['product_id' => 'prod-200', 'name' => 'Ball'],
     ])
-    ->keyBy(fn (array $item, int $key) => strtoupper($item['product_id']))
-    ->all();
+        ->keyBy(fn (array $item, int $key) => strtoupper($item['product_id']))
+        ->all();
 
     /*
         {
@@ -1146,8 +1146,8 @@ Route::get('/keys', function (): array {
         'prod-100' => ['product_id' => 'prod-100', 'name' => 'Desk'],
         'prod-200' => ['product_id' => 'prod-200', 'name' => 'Ball'],
     ])
-    ->keys()
-    ->all();
+        ->keys()
+        ->all();
 
     /*
         [
@@ -1174,3 +1174,21 @@ Route::get('/lazy', function (): string {
 
     // Illuminate\Support\LazyCollection
 });
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/map', function (): array {
+    return collect([1, 2, 3, 4, 5])->map(fn (int $item, int $key) => $item * 2)->all();
+
+    /*
+        [
+            2,
+            4,
+            6,
+            8,
+            10
+        ]
+    */
+});
+
