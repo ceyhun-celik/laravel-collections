@@ -1137,3 +1137,22 @@ Route::get('key-by/2', function (): array {
         }
     */
 });
+
+/**
+ * @return array<int, string>
+ */
+Route::get('/keys', function (): array {
+    return collect([
+        'prod-100' => ['product_id' => 'prod-100', 'name' => 'Desk'],
+        'prod-200' => ['product_id' => 'prod-200', 'name' => 'Ball'],
+    ])
+    ->keys()
+    ->all();
+
+    /*
+        [
+            "prod-100",
+            "prod-200"
+        ]
+    */
+});
