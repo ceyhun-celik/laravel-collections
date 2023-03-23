@@ -739,6 +739,15 @@ Route::get('/flatten/2', function (): array {
     ])
     ->flatten()
     ->all();
+
+    /*
+        [
+            "iPhone XR",
+            "Apple",
+            "Galaxy S7",
+            "Samsung"
+        ]
+    */
 });
 
 /**
