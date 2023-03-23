@@ -507,13 +507,13 @@ Route::get('/duplicates/2', function (): array {
 });
 
 Route::get('/each/1', function (): void {
-    collect([1, 2, 3, 4])->each(function (int $item, int $key) {
+    collect([1, 2, 3, 4])->each(function (int $item, int $key): mixed {
         //
     });
 });
 
 Route::get('/each/2', function (): void {
-    collect([1, 2, 3, 4])->each(function (int $item, int $key) {
+    collect([1, 2, 3, 4])->each(function (int $item, int $key): mixed {
         if ($key === 4) {
             return false;
         }
@@ -521,7 +521,7 @@ Route::get('/each/2', function (): void {
 });
 
 Route::get('/each-spread', function (): void {
-    collect([['John Doe', 35], ['Jane Doe', 33]])->eachSpread(function (string $name, int $age) {
+    collect([['John Doe', 35], ['Jane Doe', 33]])->eachSpread(function (string $name, int $age): mixed {
         //
     });
 });
@@ -567,7 +567,7 @@ Route::get('/except', function (): array {
  */
 Route::get('/filter/1', function (): array {
     return collect([1, 2, 3, 4])
-        ->filter(fn (int $value, int $key) => $value > 2)
+        ->filter(fn (int $value, int $key): bool => $value > 2)
         ->all();
 
     /*
@@ -685,7 +685,7 @@ Route::get('/flat-map', function (): array {
         ['school' => 'Arkansas'],
         ['age' => 28],
     ])
-        ->flatMap(fn (array $values) => array_map('strtoupper', $values))
+        ->flatMap(fn (array $values): array => array_map('strtoupper', $values))
         ->all();
 
     /*
@@ -978,7 +978,7 @@ Route::get('/implode/3', function (): string {
         ['account_id' => 1, 'product' => 'Desk'],
         ['account_id' => 2, 'product' => 'Ball'],
     ])
-        ->implode(fn (array $item, int $key) => strtoupper($item['product']), ', ');
+        ->implode(fn (array $item, int $key): string => strtoupper($item['product']), ', ');
 
     // DESK, BALL
 });
@@ -1121,7 +1121,7 @@ Route::get('key-by/2', function (): array {
         ['product_id' => 'prod-100', 'name' => 'Desk'],
         ['product_id' => 'prod-200', 'name' => 'Ball'],
     ])
-        ->keyBy(fn (array $item, int $key) => strtoupper($item['product_id']))
+        ->keyBy(fn (array $item, int $key): string => strtoupper($item['product_id']))
         ->all();
 
     /*
@@ -1158,7 +1158,7 @@ Route::get('/keys', function (): array {
 });
 
 Route::get('/last/1', function (): int {
-    return collect([1, 2, 3, 4])->last(fn (int $value, int $key) => $value < 3);
+    return collect([1, 2, 3, 4])->last(fn (int $value, int $key): bool => $value < 3);
 
     // 2
 });
@@ -1179,7 +1179,7 @@ Route::get('/lazy', function (): string {
  * @return array<int, int>
  */
 Route::get('/map', function (): array {
-    return collect([1, 2, 3, 4, 5])->map(fn (int $item, int $key) => $item * 2)->all();
+    return collect([1, 2, 3, 4, 5])->map(fn (int $item, int $key): int => $item * 2)->all();
 
     /*
         [
@@ -1196,7 +1196,7 @@ Route::get('/map', function (): array {
  * @return array<int, int>
  */
 Route::get('/map-spread', function (): array {
-    return collect([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])->chunk(2)->mapSpread(fn (int $even, int $odd) => $even + $odd)->all();
+    return collect([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])->chunk(2)->mapSpread(fn (int $even, int $odd): int => $even + $odd)->all();
 
     /*
         [
