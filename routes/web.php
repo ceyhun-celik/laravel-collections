@@ -1087,3 +1087,53 @@ Route::get('/join/5', function (): string {
 
     //
 });
+
+/**
+ * @return array<string, array>
+ */
+Route::get('key-by/1', function (): array {
+    return collect([
+        ['product_id' => 'prod-100', 'name' => 'Desk'],
+        ['product_id' => 'prod-200', 'name' => 'Ball'],
+    ])
+    ->keyBy('product_id')
+    ->all();
+
+    /*
+        {
+            "prod-100": {
+                "product_id": "prod-100",
+                "name": "Desk"
+            },
+            "prod-200": {
+                "product_id": "prod-200",
+                "name": "Ball"
+            }
+        }
+    */
+});
+
+/**
+ * @return array<string, array>
+ */
+Route::get('key-by/2', function (): array {
+    return collect([
+        ['product_id' => 'prod-100', 'name' => 'Desk'],
+        ['product_id' => 'prod-200', 'name' => 'Ball'],
+    ])
+    ->keyBy(fn (array $item, int $key) => strtoupper($item['product_id']))
+    ->all();
+
+    /*
+        {
+            "PROD-100": {
+                "product_id": "prod-100",
+                "name": "Desk"
+            },
+            "PROD-200": {
+                "product_id": "prod-200",
+                "name": "Ball"
+            }
+        }
+    */
+});
