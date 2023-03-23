@@ -1156,3 +1156,15 @@ Route::get('/keys', function (): array {
         ]
     */
 });
+
+Route::get('/last/1', function (): int {
+    return collect([1, 2, 3, 4])->last(fn (int $value, int $key) => $value < 3);
+
+    // 2
+});
+
+Route::get('/last/2', function (): int {
+    return collect([1, 2, 3, 4])->last();
+
+    // 4
+});
