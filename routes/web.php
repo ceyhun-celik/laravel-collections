@@ -1244,3 +1244,32 @@ Route::get('/map-to-groups', function (): array {
         }
     */
 });
+
+/**
+ * @return array<string, string>
+ */
+Route::get('map-with-keys', function (): array {
+    return collect([
+        [
+            'name' => 'John',
+            'department' => 'Sales',
+            'email' => 'john@example.com',
+        ],
+        [
+            'name' => 'Jane',
+            'department' => 'Marketing',
+            'email' => 'jane@example.com',
+        ]
+    ])
+    ->mapWithKeys(fn (array $item, int $key) => [
+        $item['email'] => $item['name'],
+    ])
+    ->all();
+
+    /*
+        {
+            "john@example.com": "John",
+            "jane@example.com": "Jane"
+        }
+    */
+});
