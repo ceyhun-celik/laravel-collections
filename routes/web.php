@@ -1309,7 +1309,7 @@ Route::get('/median/2', function (): float {
     // 1.5
 });
 
-Route::get('/median/3', function () {
+Route::get('/median/3', function (): int {
     return collect([1, 1, 1, 2, 4])->median();
 
     // 1
