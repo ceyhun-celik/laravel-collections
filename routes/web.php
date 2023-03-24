@@ -1356,3 +1356,33 @@ Route::get('/merge/2', function (): array {
     */
 });
 
+/**
+ * @return array<string, mixed>
+ */
+Route::get('/merge-recursive', function (): array {
+    return collect([
+        'product_id' => 1,
+        'price' => 100,
+        
+    ])
+    ->mergeRecursive([
+        'product_id' => 2,
+        'price' => 200,
+        'discount' => false,
+    ])
+    ->all();
+
+    /*
+        {
+            "product_id": [
+                1,
+                2
+            ],
+            "price": [
+                100,
+                200
+            ],
+            "discount": false
+        }
+    */
+});
