@@ -1325,7 +1325,7 @@ Route::get('/merge/1', function(): array {
     ])
     ->merge([
         'price' => 200,
-        'discount' => false
+        'discount' => false,
     ])
     ->all();
 
@@ -1355,3 +1355,4 @@ Route::get('/merge/2', function (): array {
         ]
     */
 });
+
