@@ -1495,3 +1495,17 @@ Route::get('/partition/2', function (): array {
         }
     */
 });
+
+Route::get('/pipe-through', function (): int {
+    return collect([1, 2, 3])
+        ->pipeThrough([
+            function (Collection $collection): Collection {
+                return $collection->merge([4, 5]);
+            },
+            function (Collection $collection): int {
+                return $collection->sum();
+            }
+        ]);
+
+    // 15
+});
