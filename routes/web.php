@@ -1290,3 +1290,27 @@ Route::get('/max/2', function (): int {
 
     // 5
 });
+
+Route::get('/median/1', function (): int {
+    return collect([
+        ['foo' => 10],
+        ['foo' => 10],
+        ['foo' => 20],
+        ['foo' => 40],
+    ])
+    ->median('foo');
+
+    // 15
+});
+
+Route::get('/median/2', function (): float {
+    return collect([1, 1, 2, 4])->median();
+
+    // 1.5
+});
+
+Route::get('/median/3', function () {
+    return collect([1, 1, 1, 2, 4])->median();
+
+    // 1
+});
