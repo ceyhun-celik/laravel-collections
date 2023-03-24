@@ -1791,3 +1791,19 @@ Route::get('/random/2', function (): array {
         (retrieved randomly)
     */
 });
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/range', function (): array {
+    return collect()->range(3, 6)->all();
+
+    /*
+        [
+            3,
+            4,
+            5,
+            6
+        ]
+    */
+});
