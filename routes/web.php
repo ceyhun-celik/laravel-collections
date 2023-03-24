@@ -1707,3 +1707,47 @@ Route::get('/prepend/2', function (): array {
         }
     */
 });
+
+Route::get('/pull/1', function (): string {
+    /** @var Collection $collection */
+    $collection = collect(['product_id' => 'prod-100', 'name' => 'Desk']);
+    
+    return $collection->pull('name');
+
+    // Desk
+});
+
+/**
+ * @return array<string, string>
+ */
+Route::get('/pull/2', function (): array {
+    /** @var Collection $collection */
+    $collection = collect(['product_id' => 'prod-100', 'name' => 'Desk']);
+
+    $collection->pull('name');
+
+    return $collection->all();
+
+    /*
+        {
+            "product_id": "prod-100"
+        }
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/push', function (): array {
+    return collect([1, 2, 3, 4])->push(5)->all();
+
+    /*
+        [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    */
+});
