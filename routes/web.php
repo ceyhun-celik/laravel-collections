@@ -1768,3 +1768,26 @@ Route::get('/put', function (): array {
         }
     */
 });
+
+Route::get('/random/1', function (): int {
+    return collect([1, 2, 3, 4, 5])->random();
+
+    // 4 - (retrieved randomly)
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/random/2', function (): array {
+    return collect([1, 2, 3, 4, 5])->random(3)->all();
+
+    /*
+        [
+            2,
+            3,
+            5
+        ]
+
+        (retrieved randomly)
+    */
+});
