@@ -1423,3 +1423,41 @@ Route::get('/only', function (): array {
         }
     */
 });
+
+/**
+ * @return array<int, mixed>
+ */
+Route::get('/pad/1', function (): array {
+    return collect(['A', 'B', 'C'])
+        ->pad(5, 0)
+        ->all();
+
+    /*
+        [
+            "A",
+            "B",
+            "C",
+            0,
+            0
+        ]
+    */
+});
+
+/**
+ * @return array<int, mixed>
+ */
+Route::get('/pad/2', function (): array {
+    return collect(['A', 'B', 'C'])
+        ->pad(-5, 0)
+        ->all();
+
+    /*
+        [
+            0,
+            0,
+            "A",
+            "B",
+            "C"
+        ]
+    */
+});
