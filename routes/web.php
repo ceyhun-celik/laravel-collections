@@ -1273,3 +1273,20 @@ Route::get('/map-with-keys', function (): array {
         }
     */
 });
+
+
+Route::get('max/1', function (): int {
+    return collect([
+        ['foo' => 10],
+        ['foo' => 20],
+    ])
+    ->max('foo');
+
+    // 20
+});
+
+Route::get('max/2', function (): int {
+    return collect([1, 2, 3, 4, 5])->max();
+
+    // 5
+});
