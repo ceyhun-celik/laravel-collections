@@ -1807,3 +1807,37 @@ Route::get('/range', function (): array {
         ]
     */
 });
+
+Route::get('/reduce/1', function (): int {
+    return collect([1, 2, 3])->reduce(fn (?int $carry, int $item) => $carry + $item);
+
+    // 6
+});
+
+Route::get('/reduce/2', function (): int {
+    return collect([1, 2, 3])->reduce(fn (?int $carry, int $item) => $carry + $item, 4);
+
+    // 10
+});
+
+Route::get('/reduce/3', function (): int {
+    /** @var Collection $collection */
+    $collection = collect([
+        'usd' => 1400,
+        'gbp' => 1200,
+        'eur' => 1000,
+    ]);
+
+    /** @var array<string, mixed> */
+    $ratio = [
+        'usd' => 1,
+        'gbp' => 1.37,
+        'eur' => 1.22,
+    ];
+
+    return $collection->reduce(function (?int $carry, int $value, string $key) use ($ratio): int|float {
+        return $carry + ($value * $ratio[$key]);
+    });
+
+    // 4264
+});
