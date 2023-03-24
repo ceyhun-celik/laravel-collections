@@ -1386,3 +1386,19 @@ Route::get('/merge-recursive', function (): array {
         }
     */
 });
+
+Route::get('/min/1', function (): int {
+    return collect([
+        ['foo' => 10],
+        ['foo' => 20],
+    ])
+    ->min('foo');
+
+    // 10
+});
+
+Route::get('/min/2', function (): int {
+    return collect([1, 2, 3, 4, 5])->min();
+
+    // 1
+});
