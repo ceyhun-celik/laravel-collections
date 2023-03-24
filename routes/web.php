@@ -1670,3 +1670,40 @@ Route::get('/pop/4', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/prepend/1', function (): array {
+    return collect([1, 2, 3, 4, 5])
+        ->prepend(0)
+        ->all();
+
+    /*
+        [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    */
+});
+
+/**
+ * @return array<string, int>
+ */
+Route::get('/prepend/2', function (): array {
+    return collect(['one' => 1, 'two' => 2])
+        ->prepend(0, 'zero')
+        ->all();
+
+    /*
+        {
+            "zero": 0,
+            "one": 1,
+            "two": 2
+        }
+    */
+});
