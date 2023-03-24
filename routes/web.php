@@ -1603,3 +1603,70 @@ Route::get('/pluck/4', function (): array {
         }
     */
 });
+
+Route::get('/pop/1', function (): int {
+    /** @var Collection $collection */
+    $collection = collect([1, 2, 3, 4, 5]);
+
+    return $collection->pop();
+
+    // 5
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/pop/2', function (): array {
+    /** @var Collection $collection */
+    $collection = collect([1, 2, 3, 4, 5]);
+
+    $collection->pop();
+
+    return $collection->all();
+
+    /*
+        [
+            1,
+            2,
+            3,
+            4
+        ]
+    */
+});
+
+/**
+ * @return Collection<int, int>
+ */
+Route::get('/pop/3', function (): Collection {
+    /** @var Collection $collection */
+    $collection = collect([1, 2, 3, 4, 5]);
+
+    return $collection->pop(3);
+
+    /*
+        [
+            5,
+            4,
+            3
+        ]
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/pop/4', function (): array {
+    /** @var Collection $collection */
+    $collection = collect([1, 2, 3, 4, 5]);
+
+    $collection->pop(3);
+
+    return $collection->all();
+
+    /*
+        [
+            1,
+            2
+        ]
+    */
+});
