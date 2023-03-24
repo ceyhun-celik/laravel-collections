@@ -1461,3 +1461,37 @@ Route::get('/pad/2', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/partition/1', function (): array {
+    [$underThree, $equalOrAboveThree] = collect([1, 2, 3, 4, 5, 6])->partition(fn (int $i) => $i < 3);
+
+    return $underThree->all();
+
+    /*
+        [
+            1,
+            2
+        ]
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/partition/2', function (): array {
+    [$underThree, $equalOrAboveThree] = collect([1, 2, 3, 4, 5, 6])->partition(fn (int $i) => $i < 3);
+
+    return $equalOrAboveThree->all();
+
+    /*
+        {
+            "2": 3,
+            "3": 4,
+            "4": 5,
+            "5": 6
+        }
+    */
+});
