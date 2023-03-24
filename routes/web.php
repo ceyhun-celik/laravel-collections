@@ -1402,3 +1402,24 @@ Route::get('/min/2', function (): int {
 
     // 1
 });
+
+/**
+ * @return array<string, mixed>
+ */
+Route::get('/only', function (): array {
+    return collect([
+        'product_id' => 1,
+        'name' => 'Desk',
+        'price' => 100,
+        'discount' => false,
+    ])
+    ->only(['product_id', 'name'])
+    ->all();
+
+    /*
+        {
+            "product_id": 1,
+            "name": "Desk"
+        }
+    */
+});
