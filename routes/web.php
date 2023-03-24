@@ -1509,3 +1509,97 @@ Route::get('/pipe-through', function (): int {
 
     // 15
 });
+
+/**
+ * @return array<int, string>
+ */
+Route::get('/pluck/1', function (): array {
+    return collect([
+        ['product_id' => 'prod-100', 'name' => 'Desk'],
+        ['product_id' => 'prod-200', 'name' => 'Ball'],
+    ])
+    ->pluck('name')
+    ->all();
+
+    /*
+        [
+            "Desk",
+            "Ball"
+        ]
+    */
+});
+
+/**
+ * @return array<string, string>
+ */
+Route::get('/pluck/2', function (): array {
+    return collect([
+        ['product_id' => 'prod-100', 'name' => 'Desk'],
+        ['product_id' => 'prod-200', 'name' => 'Ball'],
+    ])
+    ->pluck('name', 'product_id')
+    ->all();
+
+    /*
+        {
+            "prod-100": "Desk",
+            "prod-200": "Ball"
+        }
+    */
+});
+
+/**
+ * @return array<int, array>
+ */
+Route::get('/pluck/3', function (): array {
+    return collect([
+        [
+            'name' => 'Laracon',
+            'speakers' => [
+                'first_day' => ['Rosa', 'Judith'],
+            ],
+        ],
+        [
+            'name' => 'VueConf',
+            'speakers' => [
+                'first_day' => ['Abigail', 'Joey'],
+            ],
+        ],
+    ])
+    ->pluck('speakers.first_day')
+    ->all();
+    
+    /*
+        [
+            [
+                "Rosa",
+                "Judith"
+            ],
+            [
+                "Abigail",
+                "Joey"
+            ]
+        ]
+    */
+});
+
+/**
+ * @return array<string, string>
+ */
+Route::get('/pluck/4', function (): array {
+    return collect([
+        ['brand' => 'Tesla',  'color' => 'red'],
+        ['brand' => 'Pagani', 'color' => 'white'],
+        ['brand' => 'Tesla',  'color' => 'black'],
+        ['brand' => 'Pagani', 'color' => 'orange'],
+    ])
+    ->pluck('color', 'brand')
+    ->all();
+
+    /*
+        {
+            "Tesla": "black",
+            "Pagani": "orange"
+        }
+    */
+});
