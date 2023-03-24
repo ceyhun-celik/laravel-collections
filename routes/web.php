@@ -1248,7 +1248,7 @@ Route::get('/map-to-groups', function (): array {
 /**
  * @return array<string, string>
  */
-Route::get('map-with-keys', function (): array {
+Route::get('/map-with-keys', function (): array {
     return collect([
         [
             'name' => 'John',
