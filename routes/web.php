@@ -1855,3 +1855,24 @@ Route::get('/reject', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<int, string>
+ */
+Route::get('/replace', function (): array {
+    return collect(['Taylor', 'Abigail', 'James'])
+        ->replace([
+            1 => 'Victoria',
+            3 => 'Finn',
+        ])
+        ->all();
+
+    /*
+        [
+            "Taylor",
+            "Victoria",
+            "James",
+            "Finn"
+        ]
+    */
+});
