@@ -1751,3 +1751,20 @@ Route::get('/push', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<string, mixed>
+ */
+Route::get('/put', function (): array {
+    return collect(['product_id' => 1, 'name' => 'Desk'])
+        ->put('price', 100)
+        ->all();
+
+    /*
+        {
+            "product_id": 1,
+            "name": "Desk",
+            "price": 100
+        }
+    */
+});
