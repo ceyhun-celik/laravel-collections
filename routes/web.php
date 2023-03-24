@@ -1841,3 +1841,17 @@ Route::get('/reduce/3', function (): int {
 
     // 4264
 });
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/reject', function (): array {
+    return collect([1, 2, 3, 4])->reject(fn (int $value, int $key) => $value > 2)->all();
+
+    /*
+        [
+            1,
+            2
+        ]
+    */
+});
