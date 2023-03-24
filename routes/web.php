@@ -1314,3 +1314,44 @@ Route::get('/median/3', function (): int {
 
     // 1
 });
+
+/**
+ * @return array<string, mixed>
+ */
+Route::get('/merge/1', function(): array {
+    return collect([
+        'product_id' => 1,
+        'price' => 100
+    ])
+    ->merge([
+        'price' => 200,
+        'discount' => false
+    ])
+    ->all();
+
+    /*
+        {
+            "product_id": 1,
+            "price": 200,
+            "discount": false
+        }
+    */
+});
+
+/**
+ * @return array<int, string>
+ */
+Route::get('/merge/2', function (): array {
+    return collect(['Desk', 'Chair'])
+        ->merge(['Bookcase', 'Door'])
+        ->all();
+
+    /*
+        [
+            "Desk",
+            "Chair",
+            "Bookcase",
+            "Door"
+        ]
+    */
+});
