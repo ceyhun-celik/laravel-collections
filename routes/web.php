@@ -2701,3 +2701,19 @@ Route::get('/take-until/2', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/take-while', function (): array {
+    return collect([1, 2, 3, 4])
+        ->takeWhile(fn (int $item): bool => $item < 3)
+        ->all();
+
+    /*
+        [
+            1,
+            2
+        ]
+    */
+});
