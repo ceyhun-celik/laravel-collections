@@ -2587,6 +2587,9 @@ Route::get('/splice/6', function (): array {
     */
 });
 
+/**
+ * @return array<int, array>
+ */
 Route::get('/split', function (): array {
     return collect([1, 2, 3, 4, 5])
         ->split(3)
