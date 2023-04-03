@@ -2638,3 +2638,66 @@ Route::get('/sum/3', function (): int {
 
     // 6
 });
+
+Route::get('/take/1', function (): array {
+    return collect([0, 1, 2, 3, 4, 5])
+        ->take(3)
+        ->all();
+
+    /*
+        [
+            0,
+            1,
+            2
+        ]
+    */
+});
+
+Route::get('/take/2', function (): array {
+    return collect([0, 1, 2, 3, 4, 5])
+        ->take(-2)
+        ->all();
+
+    /*
+        {
+            "4": 4,
+            "5": 5
+        }
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/take-until/1', function (): array {
+    return collect([1, 2, 3, 4])
+        ->takeUntil(fn ($item): bool => $item >= 3)
+        ->all();
+
+    /*
+        [
+            1,
+            2
+        ]
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/take-until/2', function (): array {
+    return collect([0, 0, 1, 1, 1, 2, 3, 4])
+        ->takeUntil(3)
+        ->all();
+
+    /*
+        [
+            0,
+            0,
+            1,
+            1,
+            1,
+            2
+        ]
+    */
+});
