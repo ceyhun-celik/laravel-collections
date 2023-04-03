@@ -1910,3 +1910,12 @@ Route::get('/replace-recursive', function (): array {
         ]
     */
 });
+
+// /**
+//  * @return array<int, string>
+//  */
+// Route::get('/reverse', function (): array {
+//     return collect(['a', 'b', 'c', 'd', 'e', 'f'])
+//         ->reverse()
+//         ->all();
+// });
