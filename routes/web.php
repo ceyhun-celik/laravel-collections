@@ -2275,3 +2275,153 @@ Route::get('/sort/2', function (): array {
     */
 });
 
+// /**
+//  * @return array<int, array>
+//  */
+// Route::get('/sort-by/1', function (): array {
+//     return collect([
+//         ['name' => 'Desk', 'price' => 200],
+//         ['name' => 'Ball', 'price' => 250],
+//         ['name' => 'Book', 'price' => 100],
+//     ])
+//     ->sortBy('price')
+//     ->all();
+// });
+
+/**
+ * @return array<int, array>
+ */
+Route::get('/sort-by/2', function (): array {
+    return collect([
+        ['name' => 'Desk', 'price' => 200],
+        ['name' => 'Ball', 'price' => 250],
+        ['name' => 'Book', 'price' => 100],
+    ])
+    ->sortBy('price')
+    ->values()
+    ->all();
+
+    /*
+        [
+            {
+                "name": "Book",
+                "price": 100
+            },
+            {
+                "name": "Desk",
+                "price": 200
+            },
+            {
+                "name": "Ball",
+                "price": 250
+            }
+        ]
+    */
+});
+
+/**
+ * @return array<int, array>
+ */
+Route::get('/sort-by/3', function (): array {
+    return collect([
+        ['title' => 'Item 1'],
+        ['title' => 'Item 12'],
+        ['title' => 'Item 3'],
+    ])
+    ->sortBy('title', SORT_NATURAL)
+    ->values()
+    ->all();
+
+    /*
+        [
+            {
+                "title": "Item 1"
+            },
+            {
+                "title": "Item 3"
+            },
+            {
+                "title": "Item 12"
+            }
+        ]
+    */
+});
+
+/**
+ * @return array<int, array>
+ */
+Route::get('/sort-by/4', function (): array {
+    return collect([
+        ['name' => 'Desk', 'colors' => ['Black', 'Mahogany']],
+        ['name' => 'Ball', 'colors' => ['Black']],
+        ['name' => 'Book', 'colors' => ['Red', 'Beige', 'Brown']],
+    ])
+    ->sortBy(fn (array $product, int $key): int => count($product['colors']))
+    ->values()
+    ->all();
+
+    /*
+        [
+            {
+                "name": "Ball",
+                "colors": [
+                    "Black"
+                ]
+            },
+            {
+                "name": "Desk",
+                "colors": [
+                    "Black",
+                    "Mahogany"
+                ]
+            },
+            {
+                "name": "Book",
+                "colors": [
+                    "Red",
+                    "Beige",
+                    "Brown"
+                ]
+            }
+        ]
+    */
+});
+
+/**
+ * @return array<int, array>
+ */
+Route::get('/sort-by/5', function (): array {
+    return collect([
+        ['name' => 'Taylor Otwell', 'age' => 34],
+        ['name' => 'Abigail Otwell', 'age' => 30],
+        ['name' => 'Taylor Otwell', 'age' => 36],
+        ['name' => 'Abigail Otwell', 'age' => 32],
+    ])
+    ->sortBy([
+        ['name', 'asc'],
+        ['age', 'desc']
+    ])
+    ->values()
+    ->all();
+
+    /*
+        [
+            {
+                "name": "Abigail Otwell",
+                "age": 32
+            },
+            {
+                "name": "Abigail Otwell",
+                "age": 30
+            },
+            {
+                "name": "Taylor Otwell",
+                "age": 36
+            },
+            {
+                "name": "Taylor Otwell",
+                "age": 34
+            }
+        ]
+    */
+});
