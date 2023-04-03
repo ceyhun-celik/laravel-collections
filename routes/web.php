@@ -2445,3 +2445,142 @@ Route::get('/sort-desc', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<string, mixed>
+ */
+Route::get('/sort-keys', function (): array {
+    return collect([
+        'id' => 22345,
+        'first' => 'John',
+        'last' => 'Doe',
+    ])
+    ->sortKeys()
+    ->all();
+
+    /*
+        {
+            "first": "John",
+            "id": 22345,
+            "last": "Doe"
+        }
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/splice/1', function (): array {
+    /** @var Collection $collection */
+    $collection = collect([1, 2, 3, 4, 5]);
+
+    /** @var Collection $chunk */
+    $chunk = $collection->splice(2);
+
+    return $chunk->all();
+
+    /*
+        [
+            3,
+            4,
+            5
+        ]
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/splice/2', function (): array {
+    /** @var Collection $collection */
+    $collection = collect([1, 2, 3, 4, 5]);
+
+    $collection->splice(2);
+
+    return $collection->all();
+
+    /*
+        [
+            1,
+            2
+        ]
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/splice/3', function (): array {
+    /** @var Collection $collection */
+    $collection = collect([1, 2, 3, 4, 5]);
+
+    $chunk = $collection->splice(2, 1);
+
+    return $chunk->all();
+
+    /*
+        [
+            3
+        ]
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/splice/4', function (): array {
+    /** @var Collection $collection */
+    $collection = collect([1, 2, 3, 4, 5]);
+
+    $collection->splice(2, 1);
+
+    return $collection->all();
+
+    /*
+        [
+            1,
+            2,
+            4,
+            5
+        ]
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/splice/5', function (): array {
+    /** @var Collection $collection */
+    $collection = collect([1, 2, 3, 4, 5]);
+
+    /** @var Collection $chunk */
+    $chunk = $collection->splice(2, 1, [10, 11]);
+
+    return $chunk->all();
+
+    /*
+        [
+            3
+        ]
+    */
+});
+
+Route::get('/splice/6', function (): array {
+    /** @var Collection $collection */
+    $collection = collect([1, 2, 3, 4, 5]);
+
+    $collection->splice(2, 1, [10, 11]);
+
+    return $collection->all();
+
+    /*
+        [
+            1,
+            2,
+            10,
+            11,
+            4,
+            5
+        ]
+    */
+});
