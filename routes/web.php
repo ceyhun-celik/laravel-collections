@@ -1950,6 +1950,9 @@ Route::get('/shift/1', function (): int {
     // 3
 });
 
+/**
+ * @return array<int, int>
+ */
 Route::get('/shift/2', function (): array {
     /** @var Collection $collection */
     $collection = collect([3, 5, 7, 9]);
