@@ -3,6 +3,8 @@
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 
+use function GuzzleHttp\Promise\all;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -2581,6 +2583,28 @@ Route::get('/splice/6', function (): array {
             11,
             4,
             5
+        ]
+    */
+});
+
+Route::get('/split', function (): array {
+    return collect([1, 2, 3, 4, 5])
+        ->split(3)
+        ->all();
+
+    /*
+        [
+            [
+                1,
+                2
+            ],
+            [
+                3,
+                4
+            ],
+            [
+                5
+            ]
         ]
     */
 });
