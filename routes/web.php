@@ -1876,3 +1876,37 @@ Route::get('/replace', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<int, mixed>
+ */
+Route::get('/replace-recursive', function (): array {
+    return collect([
+        'Taylor',
+        'Abigail',
+        [
+            'James',
+            'Victoria',
+            'Finn',
+        ],
+    ])
+    ->replaceRecursive([
+        'Charlie',
+        2 => [
+            1 => 'King',
+        ],
+    ])
+    ->all();
+
+    /*
+        [
+            "Charlie",
+            "Abigail",
+            [
+                "James",
+                "King",
+                "Finn"
+            ]
+        ]
+    */
+});
