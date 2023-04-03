@@ -1966,3 +1966,34 @@ Route::get('/shift/2', function (): array {
         ]
     */
 });
+
+Route::get('/shift/3', function (): Collection {
+    return collect([1, 2, 3, 4, 5])->shift(3);
+
+    /*
+        [
+            1,
+            2,
+            3
+        ]
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/shift/4', function (): array {
+    /** @var Collection $collection */
+    $collection = collect([1, 2, 3, 4, 5]);
+
+    $collection->shift(3);
+
+    return $collection->all();
+
+    /*
+        [
+            4,
+            5
+        ]
+    */
+});
