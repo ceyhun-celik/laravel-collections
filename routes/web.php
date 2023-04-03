@@ -2425,3 +2425,23 @@ Route::get('/sort-by/5', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/sort-desc', function (): array {
+    return collect([5, 3, 1, 2, 4])
+        ->sortDesc()
+        ->values()
+        ->all();
+
+    /*
+        [
+            5,
+            4,
+            3,
+            2,
+            1
+        ]
+    */
+});
