@@ -2246,14 +2246,14 @@ Route::get('/sole/3', function (): array {
     */
 });
 
-/**
- * @return array<int, int>
- */
-Route::get('/sort/1', function (): array {
-    return collect([5, 3, 1, 2, 4])
-        ->sort()
-        ->all();
-});
+// /**
+//  * @return array<int, int>
+//  */
+// Route::get('/sort/1', function (): array {
+//     return collect([5, 3, 1, 2, 4])
+//         ->sort()
+//         ->all();
+// });
 
 /**
  * @return array<int, int>
@@ -2274,3 +2274,4 @@ Route::get('/sort/2', function (): array {
         ]
     */
 });
+
