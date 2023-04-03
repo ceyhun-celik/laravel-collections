@@ -2021,3 +2021,23 @@ Route::get('shuffle', function (): array {
         - (generated randomly)
     */
 });
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/skip', function (): array {
+    return collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        ->skip(4)
+        ->all();
+
+    /*
+        {
+            "4": 5,
+            "5": 6,
+            "6": 7,
+            "7": 8,
+            "8": 9,
+            "9": 10
+        }
+    */
+});
