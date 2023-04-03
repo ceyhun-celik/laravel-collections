@@ -2740,3 +2740,19 @@ Route::get('/times', function (): array {
         ]
     */
 });
+
+Route::get('/transform', function (): array {
+    return collect([1, 2, 3, 4, 5])
+        ->transform(fn (int $item, int $key): int => $item * 4)
+        ->all();
+
+    /*
+        [
+            4,
+            8,
+            12,
+            16,
+            20
+        ]
+    */
+});
