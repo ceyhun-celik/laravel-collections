@@ -1261,7 +1261,7 @@ Route::get('/map-with-keys', function (): array {
             'email' => 'jane@example.com',
         ]
     ])
-    ->mapWithKeys(fn (array $item, int $key) => [
+    ->mapWithKeys(fn (array $item, int $key): array => [
         $item['email'] => $item['name'],
     ])
     ->all();
@@ -1466,7 +1466,7 @@ Route::get('/pad/2', function (): array {
  * @return array<int, int>
  */
 Route::get('/partition/1', function (): array {
-    [$underThree, $equalOrAboveThree] = collect([1, 2, 3, 4, 5, 6])->partition(fn (int $i) => $i < 3);
+    [$underThree, $equalOrAboveThree] = collect([1, 2, 3, 4, 5, 6])->partition(fn (int $i): bool => $i < 3);
 
     return $underThree->all();
 
@@ -1482,7 +1482,7 @@ Route::get('/partition/1', function (): array {
  * @return array<int, int>
  */
 Route::get('/partition/2', function (): array {
-    [$underThree, $equalOrAboveThree] = collect([1, 2, 3, 4, 5, 6])->partition(fn (int $i) => $i < 3);
+    [$underThree, $equalOrAboveThree] = collect([1, 2, 3, 4, 5, 6])->partition(fn (int $i): bool => $i < 3);
 
     return $equalOrAboveThree->all();
 
@@ -1809,13 +1809,13 @@ Route::get('/range', function (): array {
 });
 
 Route::get('/reduce/1', function (): int {
-    return collect([1, 2, 3])->reduce(fn (?int $carry, int $item) => $carry + $item);
+    return collect([1, 2, 3])->reduce(fn (?int $carry, int $item): int => $carry + $item);
 
     // 6
 });
 
 Route::get('/reduce/2', function (): int {
-    return collect([1, 2, 3])->reduce(fn (?int $carry, int $item) => $carry + $item, 4);
+    return collect([1, 2, 3])->reduce(fn (?int $carry, int $item): int => $carry + $item, 4);
 
     // 10
 });
@@ -1846,7 +1846,7 @@ Route::get('/reduce/3', function (): int {
  * @return array<int, int>
  */
 Route::get('/reject', function (): array {
-    return collect([1, 2, 3, 4])->reject(fn (int $value, int $key) => $value > 2)->all();
+    return collect([1, 2, 3, 4])->reject(fn (int $value, int $key): bool => $value > 2)->all();
 
     /*
         [
@@ -1939,7 +1939,7 @@ Route::get('/search/3', function (): int|bool {
 });
 
 Route::get('/search/4', function (): int|bool {
-    return collect([2, 4, 6, 8, 10])->search(fn (int $item, int $key) => $item > 7);
+    return collect([2, 4, 6, 8, 10])->search(fn (int $item, int $key): bool => $item > 7);
 
     // 3
 });
