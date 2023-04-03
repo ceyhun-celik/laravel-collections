@@ -2204,3 +2204,73 @@ Route::get('/sliding/2', function (): array {
         ]
     */
 });
+
+Route::get('/sole/1', function (): int {
+    return collect([1, 2, 3, 4])->sole(fn (int $value, int $key): bool => $value === 3);
+
+    // 3
+});
+
+/**
+ * @return array<string, mixed>
+ */
+Route::get('/sole/2', function (): array {
+    return collect([
+        ['product' => 'Desk', 'price' => 200],
+        ['product' => 'Ball', 'price' => 100],
+    ])
+    ->sole('product', 'Ball');
+
+    /*
+        {
+            "product": "Ball",
+            "price": 100
+        }
+    */
+});
+
+/**
+ * @return array<string, mixed>
+ */
+Route::get('/sole/3', function (): array {
+    return collect([
+        ['product' => 'Desk', 'price' => 100],
+    ])
+    ->sole();
+
+    /*
+        {
+            "product": "Desk",
+            "price": 100
+        }
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/sort/1', function (): array {
+    return collect([5, 3, 1, 2, 4])
+        ->sort()
+        ->all();
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/sort/2', function (): array {
+    return collect([5, 3, 1, 2, 4])
+        ->sort()
+        ->values()
+        ->all();
+
+    /*
+        [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    */
+});
