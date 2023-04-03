@@ -1919,3 +1919,21 @@ Route::get('/replace-recursive', function (): array {
 //         ->reverse()
 //         ->all();
 // });
+
+Route::get('/search/1', function (): int {
+    return collect([2, 4, 6, 8])->search(6);
+
+    // 2
+});
+
+Route::get('/search/2', function (): int|bool {
+    return collect([2, 4, 6, 8])->search('6', strict: true);
+
+    // false
+});
+
+Route::get('/search/3', function (): int|bool {
+    return collect([2, 4, 6, 8])->search(6, strict: true);
+
+    // 2
+});
