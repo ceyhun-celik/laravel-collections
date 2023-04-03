@@ -2182,7 +2182,7 @@ Route::get('/sliding/1', function (): array {
 });
 
 /**
- * @
+ * @return array<int, array>
  */
 Route::get('/sliding/2', function (): array {
     return collect([1, 2, 3, 4, 5])
