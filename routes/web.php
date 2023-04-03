@@ -2717,3 +2717,26 @@ Route::get('/take-while', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/times', function (): array {
+    return Collection::times(10, fn (int $number) => $number * 9)
+        ->all();
+
+    /*
+        [
+            9,
+            18,
+            27,
+            36,
+            45,
+            54,
+            63,
+            72,
+            81,
+            90
+        ]
+    */
+});
