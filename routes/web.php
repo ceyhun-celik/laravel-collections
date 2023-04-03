@@ -2047,7 +2047,7 @@ Route::get('/skip', function (): array {
  */
 Route::get('/skip-until/1', function (): array {
     return collect([1, 2, 3, 4])
-        ->skipUntil(fn (int $item) => $item >= 3)
+        ->skipUntil(fn (int $item): bool => $item >= 3)
         ->all();
 
     /*
@@ -2081,6 +2081,36 @@ Route::get('/skip-until/2', function (): array {
 Route::get('/skip-until/3', function (): array|bool {
     return collect([1, 2, 3, 5])
         ->skipUntil(4)
+        ->all();
+
+    /*
+        []
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/skip-while/1', function (): array {
+    return collect([1, 2, 3, 4, 5, 6])
+        ->skipWhile(fn (int $item): bool => $item <= 3)
+        ->all();
+
+    /*
+        {
+            "3": 4,
+            "4": 5,
+            "5": 6
+        }
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/skip-while/2', function (): array {
+    return collect([1, 2, 3, 4, 5, 6, 7])
+        ->skipWhile(fn (int $item): bool => $item < 8)
         ->all();
 
     /*
