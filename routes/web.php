@@ -2041,3 +2041,49 @@ Route::get('/skip', function (): array {
         }
     */
 });
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/skip-until/1', function (): array {
+    return collect([1, 2, 3, 4])
+        ->skipUntil(fn (int $item) => $item >= 3)
+        ->all();
+
+    /*
+        {
+            "2": 3,
+            "3": 4
+        }
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/skip-until/2', function (): array {
+    return collect([1, 1, 2, 2, 2, 3, 4, 5])
+        ->skipUntil(3)
+        ->all();
+
+    /*
+        {
+            "5": 3,
+            "6": 4,
+            "7": 5
+        }
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/skip-until/3', function (): array|bool {
+    return collect([1, 2, 3, 5])
+        ->skipUntil(4)
+        ->all();
+
+    /*
+        []
+    */
+});
