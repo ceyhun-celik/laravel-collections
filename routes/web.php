@@ -2150,3 +2150,57 @@ Route::get('/slice/2', function (): array {
         }
     */
 });
+
+/**
+ * @return array<int, array>
+ */
+Route::get('/sliding/1', function (): array {
+    return collect([1, 2, 3, 4, 5])
+        ->sliding(2)
+        ->all();
+
+    /*
+        [
+            [
+                1,
+                2
+            ],
+            {
+                "1": 2,
+                "2": 3
+            },
+            {
+                "2": 3,
+                "3": 4
+            },
+            {
+                "3": 4,
+                "4": 5
+            }
+        ]
+    */
+});
+
+/**
+ * @
+ */
+Route::get('/sliding/2', function (): array {
+    return collect([1, 2, 3, 4, 5])
+        ->sliding(3, step: 2)
+        ->all();
+       
+    /*
+        [
+            [
+                1,
+                2,
+                3
+            ],
+            {
+                "2": 3,
+                "3": 4,
+                "4": 5
+            }
+        ]
+    */
+});
