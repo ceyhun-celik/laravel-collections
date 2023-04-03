@@ -1943,3 +1943,26 @@ Route::get('/search/4', function (): int|bool {
 
     // 3
 });
+
+Route::get('/shift/1', function (): int {
+    return collect([3, 5, 7, 9])->shift();
+
+    // 3
+});
+
+Route::get('/shift/2', function (): array {
+    /** @var Collection $collection */
+    $collection = collect([3, 5, 7, 9]);
+
+    $collection->shift();
+
+    return $collection->all();
+
+    /*
+        [
+            5,
+            7,
+            9
+        ]
+    */
+});
