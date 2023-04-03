@@ -2117,3 +2117,36 @@ Route::get('/skip-while/2', function (): array {
         []
     */
 });
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/slice/1', function (): array {
+    return collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        ->slice(4)
+        ->all();
+
+    /*
+        {
+            "4": 5,
+            "5": 6,
+            "6": 7,
+            "7": 8,
+            "8": 9,
+            "9": 10
+        }
+    */
+});
+
+Route::get('/slice/2', function (): array {
+    return collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        ->slice(4, 2)
+        ->all();
+
+    /*
+        {
+            "4": 5,
+            "5": 6
+        }
+    */
+});
