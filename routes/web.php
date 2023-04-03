@@ -2611,3 +2611,30 @@ Route::get('/split', function (): array {
         ]
     */
 });
+
+Route::get('/sum/1', function (): int {
+    return collect([1, 2, 3, 4, 5])->sum();
+
+    // 15
+});
+
+Route::get('/sum/2', function (): int {
+    return collect([
+        ['name' => 'JavaScript: The Good Parts', 'pages' => 176],
+        ['name' => 'JavaScript: The Definitive Guide', 'pages' => 1096],
+    ])
+    ->sum('pages');
+
+    // 1272
+});
+
+Route::get('/sum/3', function (): int {
+    return collect([
+        ['name' => 'Desk', 'colors' => ['Black']],
+        ['name' => 'Ball', 'colors' => ['Black', 'Mahogany']],
+        ['name' => 'Book', 'colors' => ['Red', 'Beige', 'Brown']],
+    ])
+    ->sum(fn (array $item) => count($item['colors']));
+
+    // 6
+});
