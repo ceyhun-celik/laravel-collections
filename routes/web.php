@@ -1937,3 +1937,9 @@ Route::get('/search/3', function (): int|bool {
 
     // 2
 });
+
+Route::get('/search/4', function (): int|bool {
+    return collect([2, 4, 6, 8, 10])->search(fn (int $item, int $key) => $item > 7);
+
+    // 3
+});
