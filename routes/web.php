@@ -2786,3 +2786,35 @@ Route::get('/undot', function (): array {
         }
     */
 });
+
+/**
+ * @return array<int, array>
+ */
+Route::get('/union', function (): array {
+    return collect([
+        1 => ['a'],
+        2 => ['b']
+    ])
+    ->union([
+        3 => ['c'],
+        4 => ['d'],
+    ])
+    ->all();
+
+    /*
+        {
+            "1": [
+                "a"
+            ],
+            "2": [
+                "b"
+            ],
+            "3": [
+                "c"
+            ],
+            "4": [
+                "d"
+            ]
+        }
+    */
+});
