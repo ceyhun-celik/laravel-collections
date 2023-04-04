@@ -2976,8 +2976,40 @@ Route::get('/unwrap/2', function (): array {
     */
 });
 
-Route::get('/unwrap/3', function (): string {
+Route::get('/unwrap/3', function ()/*: string*/ {
     return Collection::unwrap('John Doe');
 
     // John Doe
+});
+
+Route::get('/value', function (): int {
+    return collect([
+        ['product' => 'Desk', 'price' => 200],
+        ['product' => 'Ball', 'price' => 100],
+    ])
+    ->value('price');
+
+    // 200
+});
+
+Route::get('/values', function (): array {
+    return collect([
+        10 => ['product' => 'Desk', 'price' => 200],
+        11 => ['product' => 'Ball', 'price' => 100],
+    ])
+    ->values()
+    ->all();
+
+    /*
+        [
+            {
+                "product": "Desk",
+                "price": 200
+            },
+            {
+                "product": "Ball",
+                "price": 100
+            }
+        ]
+    */
 });
