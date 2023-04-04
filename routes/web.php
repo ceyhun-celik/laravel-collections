@@ -2949,3 +2949,35 @@ Route::get('/unless/2', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<int, string>
+ */
+Route::get('/unwrap/1', function (): array {
+    return Collection::unwrap(collect('John Doe'));
+
+    /*
+        [
+            "John Doe"
+        ]
+    */
+});
+
+/**
+ * @return array<int, string>
+ */
+Route::get('/unwrap/2', function (): array {
+    return Collection::unwrap(['John Doe']);
+
+    /*
+        [
+            "John Doe"
+        ]
+    */
+});
+
+Route::get('/unwrap/3', function (): string {
+    return Collection::unwrap('John Doe');
+
+    // John Doe
+});
