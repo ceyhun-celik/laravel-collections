@@ -3107,3 +3107,51 @@ Route::get('/when-empty/3', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<int, string>
+ */
+Route::get('/when-not-empty/1', function (): array {
+    return collect(['Michael', 'Tom'])
+        ->whenNotEmpty(fn (Collection $collection): Collection => $collection->push('Adam'))
+        ->all();
+
+    /*
+        [
+            "Michael",
+            "Tom",
+            "Adam"
+        ]
+    */
+});
+
+/**
+ * @return array<int, string>
+ */
+Route::get('/when-not-empty/2', function (): array {
+    return collect()
+        ->whenNotEmpty(fn (Collection $collection): Collection => $collection->push('Adam'))
+        ->all();
+
+    /*
+        []
+    */
+});
+
+/**
+ * @return array<int, string>
+ */
+Route::get('/when-not-empty/3', function (): array {
+    return collect()
+        ->whenNotEmpty(
+            fn (Collection $collection): Collection => $collection->push('Adam'),
+            fn (Collection $collection): Collection => $collection->push('Taylor'),
+        )
+        ->all();
+
+    /*
+        [
+            "Taylor"
+        ]
+    */
+});
