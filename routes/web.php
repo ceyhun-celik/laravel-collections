@@ -2838,6 +2838,9 @@ Route::get('/unique/1', function (): array {
     */
 });
 
+/**
+ * @return array<int, array>
+ */
 Route::get('/unique/2', function (): array {
     return collect([
         ['name' => 'iPhone 6', 'brand' => 'Apple', 'type' => 'phone'],
@@ -2866,6 +2869,9 @@ Route::get('/unique/2', function (): array {
     */
 });
 
+/**
+ * @return array<int, array>
+ */
 Route::get('/unique/3', function (): array {
     return collect([
         ['name' => 'iPhone 6', 'brand' => 'Apple', 'type' => 'phone'],
