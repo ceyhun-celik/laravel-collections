@@ -3056,3 +3056,54 @@ Route::get('/when/2', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<int, string>
+ */
+Route::get('/when-empty/1', function (): array {
+    return collect(['Michael', 'Tom'])
+        ->whenEmpty(fn (Collection $collection): Collection => $collection->push('Adam'))
+        ->all();
+
+    /*
+        [
+            "Michael",
+            "Tom"
+        ]
+    */
+});
+
+/**
+ * @return array<int, string>
+ */
+Route::get('/when-empty/2', function (): array {
+    return collect()
+        ->whenEmpty(fn (Collection $collection): Collection => $collection->push('Adam'))
+        ->all();
+
+    /*
+        [
+            "Adam"
+        ]
+    */
+});
+
+/**
+ * @return array<int, string>
+ */
+Route::get('/when-empty/3', function (): array {
+    return collect(['Michael', 'Tom'])
+        ->whenEmpty(
+            fn (Collection $collection): Collection => $collection->push('Adam'),
+            fn (Collection $collection): Collection => $collection->push('Taylor'),
+        )
+        ->all();
+
+    /*
+        [
+            "Michael",
+            "Tom",
+            "Taylor"
+        ]
+    */
+});
