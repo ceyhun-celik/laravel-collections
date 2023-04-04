@@ -3155,3 +3155,56 @@ Route::get('/when-not-empty/3', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<int, array>
+ */
+Route::get('/where/1', function (): array {
+    return collect([
+        ['product' => 'Desk', 'price' => 200],
+        ['product' => 'Book', 'price' => 100],
+        ['product' => 'Ball', 'price' => 150],
+        ['product' => 'Door', 'price' => 100],
+    ])
+    ->where('price', 100)
+    ->all();
+
+    /*
+        {
+            "1": {
+                "product": "Book",
+                "price": 100
+            },
+            "3": {
+                "product": "Door",
+                "price": 100
+            }
+        }
+    */
+});
+
+/**
+ * @return array<int, array>
+ */
+Route::get('/where/2', function (): array {
+    return collect([
+        ['name' => 'Jim', 'deleted_at' => '2019-01-01 00:00:00'],
+        ['name' => 'Sally', 'deleted_at' => '2019-01-02 00:00:00'],
+        ['name' => 'Sue', 'deleted_at' => null],
+    ])
+    ->where('deleted_at', '!=', null)
+    ->all();
+
+    /*
+        [
+            {
+                "name": "Jim",
+                "deleted_at": "2019-01-01 00:00:00"
+            },
+            {
+                "name": "Sally",
+                "deleted_at": "2019-01-02 00:00:00"
+            }
+        ]
+    */
+});
