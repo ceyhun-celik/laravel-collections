@@ -3208,3 +3208,25 @@ Route::get('/where/2', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<int, array>
+ */
+Route::get('/zip', function (): array {
+    return collect(['Chair', 'Desk'])
+        ->zip([100, 200])
+        ->all();
+
+    /*
+        [
+            [
+                "Chair",
+                100
+            ],
+            [
+                "Desk",
+                200
+            ]
+        ]
+    */
+});
