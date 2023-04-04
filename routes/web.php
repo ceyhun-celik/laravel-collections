@@ -2992,6 +2992,9 @@ Route::get('/value', function (): int {
     // 200
 });
 
+/**
+ * @return array<int, array>
+ */
 Route::get('/values', function (): array {
     return collect([
         10 => ['product' => 'Desk', 'price' => 200],
