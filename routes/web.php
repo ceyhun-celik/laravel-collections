@@ -3016,3 +3016,43 @@ Route::get('/values', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/when/1', function (): array {
+    return collect([1, 2, 3])
+        ->when(true, fn (Collection $collection , int $value): Collection => $collection->push(4))
+        ->when(false, fn (Collection $collection , int $value): Collection => $collection->push(5))
+        ->all();
+
+    /*
+        [
+            1,
+            2,
+            3,
+            4
+        ]
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/when/2', function (): array {
+    return collect([1, 2, 3])
+        ->when(false,
+            fn (Collection $collection, int $value): Collection => $collection->push(4),
+            fn (Collection $collection, int $value): Collection => $collection->push(5),
+        )
+        ->all();
+
+    /*
+        [
+            1,
+            2,
+            3,
+            5
+        ]
+    */
+});
