@@ -2818,3 +2818,88 @@ Route::get('/union', function (): array {
         }
     */
 });
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/unique/1', function (): array {
+    return collect([1, 1, 2, 2, 3, 4, 2])
+        ->unique()
+        ->values()
+        ->all();
+
+    /*
+        [
+            1,
+            2,
+            3,
+            4
+        ]
+    */
+});
+
+Route::get('/unique/2', function (): array {
+    return collect([
+        ['name' => 'iPhone 6', 'brand' => 'Apple', 'type' => 'phone'],
+        ['name' => 'iPhone 5', 'brand' => 'Apple', 'type' => 'phone'],
+        ['name' => 'Apple Watch', 'brand' => 'Apple', 'type' => 'watch'],
+        ['name' => 'Galaxy S6', 'brand' => 'Samsung', 'type' => 'phone'],
+        ['name' => 'Galaxy Gear', 'brand' => 'Samsung', 'type' => 'watch'],
+    ])
+    ->unique('brand')
+    ->values()
+    ->all();
+
+    /*
+        [
+            {
+                "name": "iPhone 6",
+                "brand": "Apple",
+                "type": "phone"
+            },
+            {
+                "name": "Galaxy S6",
+                "brand": "Samsung",
+                "type": "phone"
+            }
+        ]
+    */
+});
+
+Route::get('/unique/3', function (): array {
+    return collect([
+        ['name' => 'iPhone 6', 'brand' => 'Apple', 'type' => 'phone'],
+        ['name' => 'iPhone 5', 'brand' => 'Apple', 'type' => 'phone'],
+        ['name' => 'Apple Watch', 'brand' => 'Apple', 'type' => 'watch'],
+        ['name' => 'Galaxy S6', 'brand' => 'Samsung', 'type' => 'phone'],
+        ['name' => 'Galaxy Gear', 'brand' => 'Samsung', 'type' => 'watch'],
+    ])
+    ->unique(fn (array $item): string => $item['brand'].$item['type'])
+    ->values()
+    ->all();
+
+    /*
+        [
+            {
+                "name": "iPhone 6",
+                "brand": "Apple",
+                "type": "phone"
+            },
+            {
+                "name": "Apple Watch",
+                "brand": "Apple",
+                "type": "watch"
+            },
+            {
+                "name": "Galaxy S6",
+                "brand": "Samsung",
+                "type": "phone"
+            },
+            {
+                "name": "Galaxy Gear",
+                "brand": "Samsung",
+                "type": "watch"
+            }
+        ]
+    */
+});
