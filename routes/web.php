@@ -2909,3 +2909,43 @@ Route::get('/unique/3', function (): array {
         ]
     */
 });
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/unless/1', function (): array {
+    return collect([1, 2, 3])
+        ->unless(true, fn (Collection $collection): Collection => $collection->push(4))
+        ->unless(false, fn (Collection $collection): Collection => $collection->push(5))
+        ->all();
+
+    /*
+        [
+            1,
+            2,
+            3,
+            5
+        ]
+    */
+});
+
+/**
+ * @return array<int, int>
+ */
+Route::get('/unless/2', function (): array {
+    return collect([1, 2, 3])
+        ->unless(true,
+            fn (Collection $collection): Collection => $collection->push(4),
+            fn (Collection $collection): Collection => $collection->push(5),
+        )
+        ->all();
+
+    /*
+        [
+            1,
+            2,
+            3,
+            5
+        ]
+    */
+});
